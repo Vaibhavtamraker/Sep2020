@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Student Enrollment </title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</head>
+<body class="container">
+<div class="row" ng-app="myApp" ng-controller="maincntrl">
+<h2 class="text-center"> Student Enrollment Form</h2>
+<div class="col-md-offset-1 col-md-6 col-sm-12" >
+<div class="login">
+<h2>Registration Form</h2>
+<!--Code of form started-->
+<form class="form-horizontal" name="frm" novalidate>
+<!--Code to validate first name is written here-->
+<div class="form-group" >
+<label id="label" class="control-label">First Name:</label>
+<input type="text" class="form-control" name="username" ng-model="user.firstname" placeholder="Enter First Name" autocomplete="off" required />
+</div>
+
+<div class="form-group">
+<label id="label" class="control-label">Email:</label>
+<input type="email" class="form-control" ng-model="user.email" name="email" placeholder="Enter Email Address" autocomplete="off" required>
+<span class="msg" ng-show="frm.email.$dirty && frm.email.$invalid">Email Address is not valid</span>
+</div>
+
+<div class="form-group">
+<label id="label" class="control-label">Password:</label>
+<input type="password" class="form-control" ng-model="user.pass" name="pass" placeholder="Enter Password" autocomplete="off" ng-minlength="5" ng-maxlength="12" required>
+<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.minlength">password must contain atleast 5 charecters</span>
+<span class="msg" ng-show="frm.pass.$dirty && frm.pass.$error.maxlength">max-length of password reached</span>
+</div>
+
+<div class="form-group">
+<label id="label" class="control-label">website:</label>
+<textarea type="textarea" rows="2" cols="50" name="message" class="form-control" ng-model="user.message" placeholder="Enter Your Message" autocomplete="off" required></textarea><br>
+<span class="msg" ng-show="frm.message.$error.required"></span>
+</div>
+
+<div class="form-group">
+<label id="label" >Gender:</label>&nbsp;&nbsp;&nbsp;
+Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" ng-model="user.gender" value="male" required>
+&nbsp;&nbsp;&nbsp;&nbsp Female <input type="radio" name="gender" ng-model="user.gender" value="female" required></br>
+<span class="msg" ng-show="frm.gender.$error.required">select any gender</span>
+</div>
+
+<div class="form-group">
+<label id="label" class="control-label">skill:</label>
+<select class="form-control" ng-model="user.country" name="cont" required>
+<option value="html">HTML</option>
+<option value="css">CSS</option>
+<option value="switzerland">java</option>
+</select>
+<span class="msg" ng-show="frm.cont.$error.required">Select a value</span>
+</div>
+<!--Code to disable submit button is written here-->
+<div class="form-group">
+<input ng-disabled="frm.$invalid" class="btn btn-warning" type="submit" ng-click="call()" value="Submit">
+</div>
+</form>
+</div>
+</div>
+<!--code to show values after clicking pn submit button-->
+<div class="col-md-offset-1 col-md-4 col-sm-12">
+<div class="alert1" ng-show="submit_success" style="word-wrap:break-word;">
+<div class="login" >
+<h2>submitted values</h2>
+<hr>
+<h3 class="text-center">Submited Values:</h3>
+<div class="row">
+<div class="col-md-5 headname">
+<b>FirstName:</b> </div> <div class="col-md-7"> {{server.firstname}}</div> </div>
+<div class="row"><div class="col-md-5 headname"><b>Email: </b> </div> <div class="col-md-7"> {{server.email}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>Password:</b></div><div class="col-md-7"> {{server.pass}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>website </b></div><div class="col-md-7"> {{server.message}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>Gender: </b></div> <div class="col-md-7">{{server.gender}}<br></div></div>
+<div class="row"><div class="col-md-5 headname"><b>Skill: </b></div><div class="col-md-7"> {{server.country}}<br></div></div>
+<b>JSON Data: </b> {{server}}
+</div>
+</div>
+</div>
+</body>
+</html>
